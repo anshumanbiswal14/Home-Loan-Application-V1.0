@@ -1,0 +1,200 @@
+<div class="card">
+    <div class="card-header">Customer Registration</div>
+    <div class="card-body">
+        <form nonvalidate (ngSubmit)="save(registerForm)" #registerForm="ngForm">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="customerNameId">Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="customerNameId" type="text" placeholder="Name as per Aadhar Card"
+                        required [(ngModel)]=customer.customerName name="customerName" #customerNameVar="ngModel"
+                        [ngClass]="{'is-invalid': (customerNameVar.touched || customerNameVar.dirty) && !customerNameVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="customerNameVar.errors?.required">
+                            Please enter your name.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="phoneNumberId">Mobile Number</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="phoneNumberId" type="text" placeholder="Mobile Number" required
+                    pattern="^[6-9][0-9]{9}"
+                        [(ngModel)]=customer.mobileNumber name="mobileNumber" #mobileNumberVar="ngModel"
+                        [ngClass]="{'is-invalid': (mobileNumberVar.touched || mobileNumberVar.dirty) && !mobileNumberVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="mobileNumberVar.errors?.required">
+                            Please enter your mobile number.
+                        </span>
+                        <span *ngIf="mobileNumberVar.errors?.pattern">
+                            Please enter a valid 10 digit mobile number.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="emailId">Email</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="emailId" type="email" placeholder="abc@domain.com" required email
+                        [(ngModel)]=customer.emailId name="emailId" #emailIdVar="ngModel"
+                        [ngClass]="{'is-invalid': (emailIdVar.touched || emailIdVar.dirty) && !emailIdVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="emailIdVar.errors?.required">
+                            Please enter your email.
+                        </span>
+                        <span *ngIf="emailIdVar.errors?.email">
+                            Please enter a valid email.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="dateOfBirthId">Date Of Birth</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="dateOfBirthId" type="date" placeholder="01/01/1997" required
+                        [(ngModel)]=customer.dateOfBirth name="dateOfBirth" #dateOfBirthVar="ngModel"
+                        [ngClass]="{'is-invalid': (dateOfBirthVar.touched || dateOfBirthVar.dirty) && !dateOfBirthVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="dateOfBirthVar.errors?.required">
+                            Please enter your Date of birth.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label pt-0">Gender</label>
+                <div class="col-md-8">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" value="Male" 
+                            required
+                            [(ngModel)]="customer.gender" name="gender" #genderVar="ngModel"
+                            [ngClass]="{'is-invalid': (genderVar.touched || genderVar.dirty) && !genderVar.valid }" />Male
+                            <span class="invalid-feedback">
+                                <span *ngIf="genderVar.errors?.required">
+                                    Please select your gender.
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" value="Female" required
+                            [(ngModel)]="customer.gender" name="gender" #genderVar="ngModel"
+                            [ngClass]="{'is-invalid': (genderVar.touched || genderVar.dirty) && !genderVar.valid }" />Female
+                            <span class="invalid-feedback">
+                                <span *ngIf="genderVar.errors?.required">
+                                    Please select your gender.
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" value="Other" required
+                            [(ngModel)]="customer.gender" name="gender" #genderVar="ngModel"
+                            [ngClass]="{'is-invalid': (genderVar.touched || genderVar.dirty) && !genderVar.valid }" />Other
+                            <span class="invalid-feedback">
+                                <span *ngIf="genderVar.errors?.required">
+                                    Please select your gender.
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="nationalityId">Nationality</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="nationalityId" type="text" placeholder="Indian" required
+                    [(ngModel)]=customer.nationality name="nationality" #nationalityVar="ngModel"
+                        [ngClass]="{'is-invalid': (nationalityVar.touched || nationalityVar.dirty) && !nationalityVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="nationalityVar.errors?.required">
+                            Please enter your nationality.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="aadharNumberId">Aadhar Number</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="aadharNumberId" type="text" placeholder="5555 4444 3333" required
+                    pattern="^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$"
+                    [(ngModel)]=customer.aadharNumber name="aadharNumber" #aadharNumberVar="ngModel"
+                    [ngClass]="{'is-invalid': (aadharNumberVar.touched || aadharNumberVar.dirty) && !aadharNumberVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="aadharNumberVar.errors?.required">
+                            Please enter your Aadhar Number.
+                        </span>
+                        <span *ngIf="aadharNumberVar.errors?.pattern">
+                            Please enter a valid Aadhar Number.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="panNumberId">Pan Card Number</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="panNumberId" type="text" placeholder="ABCDE1234F" required
+                    pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                    [(ngModel)]=customer.panNumber name="panNumber" #panNumberVar="ngModel"
+                    [ngClass]="{'is-invalid': (panNumberVar.touched || panNumberVar.dirty) && !panNumberVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="panNumberVar.errors?.required">
+                            Please enter your Pan Card Number.
+                        </span>
+                        <span *ngIf="panNumberVar.errors?.pattern">
+                            Please enter a valid Pan Card Number.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="usernameId">User Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="usernameId" type="text" placeholder="User Name" required
+                    [(ngModel)]=customer.username name="username" #usernameVar="ngModel"
+                    [ngClass]="{'is-invalid': (usernameVar.touched || usernameVar.dirty) && !usernameVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="usernameVar.errors?.required">
+                            Please enter a User Name.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="passwordId">Password</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="passwordId" type="password" placeholder="Password" required
+                    [(ngModel)]=customer.password name="password" #passwordVar="ngModel"
+                    [ngClass]="{'is-invalid': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="passwordVar.errors?.required">
+                            Please enter a password.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3" type="submit" style="width:80px"
+                        [title]="registerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                        [disabled]="!registerForm.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>

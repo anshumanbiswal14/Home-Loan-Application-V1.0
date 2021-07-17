@@ -1,0 +1,361 @@
+<div class="card">
+    <div class="card-header"><b>ADMIN</b></div><br>
+    <div class="card-body">
+        <div class="container-fluid bg-secondary">
+            <div class="container-fluid" style="padding-top: 1rem;">
+                <button class="btn btn-info" (click)="getList()" (click)="toggleList()">{{showList? '': 'VIEW'}} LOAN
+                    APPLICATION LIST</button>
+            </div>
+            <br>
+            <div class="container-fluid " style="padding-bottom: 1rem;" *ngIf='showList'>
+                <table class="table bg-light" style="border: 2ex;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ApplicationId</th>
+                            <th>ApplicationDate</th>
+                            <th>LoanAppliedAmount</th>
+                            <th>LoanTenureYears</th>
+                            <th>LandOfficer Status</th>
+                            <th>FinanceOfficer Status</th>
+                            <th>Admin Status</th>
+                            <th>UpdateStatus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let list of loanApplicationList'>
+                            <td scope="row">
+                                {{list.applicationId}}
+                            </td>
+                            <td scope="row">
+                                {{list.applicationDate}}
+                            </td>
+                            <td scope="row">
+                                {{list.loanAppliedAmount}}
+                            </td>
+                            <td scope="row">
+                                {{list.loanTenureYears}}
+                            </td>
+                            <td scope="row">
+                                {{list.landVerificationApproval ? 'Approved':'Waiting for LandOfficer Approval'}}
+                            </td>
+                            <td scope="row">
+                                {{list.financeVerificationApproval ? 'Approved':'Waiting for FinanceOfficer Approval'}}
+                            </td>
+                            <td scope="row">
+                                {{list.adminApproval ? 'Approved':'Pending'}}
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-info"
+                                    (click)="updateList(list.applicationId)">{{list.adminApproval ? 'Updated':'Update Status'}}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="container-fluid bg-secondary">
+            <div class="container-fluid" style="padding-top: 1rem;">
+                <button class="btn btn-info" (click)="getCustomer()" (click)="toggleCustomer()">{{showCustomer? '':'VIEW'}} ALL
+                    CUSTOMER LIST</button>
+            </div>
+            <br>
+            <div class="container-fluid " style="padding-bottom: 1rem;" *ngIf='showCustomer'>
+                <table class="table bg-light" style="border: 2ex;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Mobile Number</th>
+                            <th>EmailId</th>
+                            <th>DateOfBirth </th>
+                            <th>Gender </th>
+                            <th>Nationality</th>
+                            <th>AadharNumber</th>
+                            <th>PanNumber</th>
+                            <th>Remove Customer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let list1 of customerList'>
+                            <td scope="row">
+                                {{list1.userId}}
+                            </td>
+                            <td scope="row">
+                                {{list1.customerName}}
+                            </td>
+                            <td scope="row">
+                                {{list1.mobileNumber}}
+                            </td>
+                            <td scope="row">
+                                {{list1.emailId}}
+                            </td>
+                            <td scope="row">
+                                {{list1.dateOfBirth}}
+                            </td>
+                            <td scope="row">
+                                {{list1.gender}}
+                            </td>
+                            <td scope="row">
+                                {{list1.nationality}}
+                            </td>
+                            <td scope="row">
+                                {{list1.aadharNumber}}
+                            </td>
+                            <td scope="row">
+                                {{list1.panNumber}}
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-info" (click)="deleteCustomer(list1.userId)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="container-fluid bg-secondary">
+            <div class="container-fluid" style="padding-top: 1rem;">
+                <button class="btn btn-info" (click)="viewAllAdmin()" (click)="toggleAdmin()">{{showAdmin? '':'VIEW'}} ALL
+                    ADMIN LIST</button>
+            </div>
+            <br>
+            <div class="container-fluid " style="padding-bottom: 1rem;" *ngIf='showAdmin'>
+                <table class="table bg-light" style="border: 2ex;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>AdminName</th>
+                            <th>AdminContact</th>
+                            <th>UserID</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let list of adminList'>
+                            <td scope="row">
+                                {{list.adminName}}
+                            </td>
+                            <td scope="row">
+                                {{list.adminContact}}
+                            </td>
+                            <td scope="row">
+                                {{list.userId}}
+                            </td>
+                            <td scope="row">
+                                {{list.username}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="row container-fluid bg-secondary">
+                <div class="col">
+                    <div class="row centered-form">
+                        <div class=" col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading mt-2">
+                                    <h3 class="panel-title">Add Admin</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Name <input type="text" id="adminNameId" name="adminName"
+                                                        [(ngModel)]="admin.adminName" class="form-control input-sm"
+                                                        placeholder="Name">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Contact <input type="text" name="adminContact"
+                                                        [(ngModel)]="admin.adminContact" class="form-control input-sm"
+                                                        placeholder="contact ">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Username <input type="text" name="username"
+                                                        [(ngModel)]="admin.username" class="form-control input-sm"
+                                                        placeholder="username ">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Password <input type="text" name="password"
+                                                        [(ngModel)]="admin.password" class="form-control input-sm"
+                                                        placeholder="password ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" (click)="addAdmin()" value="Add Details"
+                                            class="btn btn-info btn-block mt-3 mb-2">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="row container-fluid bg-secondary">
+                <div class="col">
+                    <div class="row centered-form">
+                        <div class=" col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading mt-2">
+                                    <h3 class="panel-title">Add Land Officer</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Name <input type="text" name="officerName"
+                                                        [(ngModel)]="landOfficer.officerName"
+                                                        class="form-control input-sm" placeholder="Name">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Contact <input type="text" name="officerContact"
+                                                        [(ngModel)]="landOfficer.officerContact"
+                                                        class="form-control input-sm" placeholder="contact ">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    username <input type="text" name="username"
+                                                        [(ngModel)]="landOfficer.username" class="form-control input-sm"
+                                                        placeholder="username ">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    Password <input type="text" name="password"
+                                                        [(ngModel)]="landOfficer.password" class="form-control input-sm"
+                                                        placeholder="password ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" (click)="addlandclick()" value="Add Details"
+                                            class="btn btn-info btn-block mt-3 mb-2">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="col">
+                <div class="row centered-form bg-secondary">
+                    <div class="col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading mt-2">
+                                <h3 class="panel-title">Add Finance Officer</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                Name <input type="text" name="finOfficerName"
+                                                    [(ngModel)]="financeOfficer.finOfficerName"
+                                                    class="form-control input-sm" placeholder="Name">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                Contact <input type="text" name="finOfficerContact"
+                                                    [(ngModel)]="financeOfficer.finOfficerContact"
+                                                    class="form-control input-sm" placeholder="contact ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                username <input type="text" name="username"
+                                                    [(ngModel)]="financeOfficer.username" class="form-control input-sm"
+                                                    placeholder="username ">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                Password <input type="text" name="password"
+                                                    [(ngModel)]="financeOfficer.password" class="form-control input-sm"
+                                                    placeholder="password ">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="submit" (click)="addfinclick()" value="Add Details"
+                                        class="btn btn-info btn-block mt-3 mb-2">
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>

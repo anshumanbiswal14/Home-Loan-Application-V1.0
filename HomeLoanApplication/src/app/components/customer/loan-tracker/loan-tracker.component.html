@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row row-cols-2">
+        <div class="col text-center">
+            <img src="../assets/images/homeloan.png" class="imglg rounded img-fluid img-thumbnail" alt="HomeLoan"
+                height="100%" width="100%">
+        </div>
+        <div class="card">
+            <h4 class="card-header">Loan Tracker</h4>
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="text-muted" for="loanTracker">Application Id :</label>
+                    <input class="form-control" type="text" id="loanTrackerId" name="loanTracker" placeholder="Enter Application Id" [(ngModel)]="loanApplicationId" autofocus>
+                </div>
+                <div class="form-group text-center mt-2">
+                    <button class="btn btn-primary mr-3" (click)="getStatus()" >Get Status</button>
+                </div>
+                <div class="form-group text-muted">
+                    <h5>Application Status:</h5>
+                    <h5 class="text-center">{{status}}</h5>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Didn't apply Loan ! <a [routerLink]="['/customer/loanApply']">Click Here</a></small>
+            </div>
+        </div>
+    </div>
+</div>

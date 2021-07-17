@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm mt-2">
+      <img src="../assets/images/HomePage.jpg" width="100%" alt="error loading image">
+    </div>
+    <div class=" col-sm mt-2">
+      <div class=" container jumbotron alert alert-success col-md-offset-3 col-md-12">
+        <h2>EMI Calculator</h2>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="form">
+
+            <div class="form-group">
+              <label>Principal Amount</label>
+              <input type="number" placeholder="0" class="form-control" [(ngModel)]="principal">
+            </div>
+
+            <div class="form-group"><br>
+              <label>Rate</label>
+              <input type="number" placeholder="0" class="form-control" [(ngModel)]="rate">
+            </div>
+
+            <div class="form-group"><br>
+              <label>Tenure (In Years)</label><br>
+              <input type="number" placeholder="0" class="form-control" [(ngModel)]="time">
+            </div>
+
+            <div class="form-group"><br>
+              <input type="submit" (click)="calculateEmi()" cplaceholder="0" class="form-control btn btn-primary"
+                value="calculate">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf=status>
+        <div class="container jumbotron alert alert-success mt-4">
+          <h5>EMI = {{emi | currency:'INR'}}</h5>
+          <h5>Total Amount = {{amt | currency:'INR' }}</h5>
+        </div>
+      </div><br>
+    </div><br>
+  </div><br>
+</div><br>

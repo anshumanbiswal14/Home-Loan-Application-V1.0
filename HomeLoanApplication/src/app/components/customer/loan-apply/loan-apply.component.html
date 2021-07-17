@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header">Loan Application</div>
+    <div class="card-body">
+        <form nonvalidate (ngSubmit)="save()" #loanApplicationForm="ngForm">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="loanAppliedAmountId">Loan Applied Amount :</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">₹</div>
+                        </div>
+                        <input class="form-control" id="loanAppliedAmountId" type="text" placeholder="1500000" required
+                            [(ngModel)]=loanApplication.loanAppliedAmount name="loanAppliedAmount"
+                            #loanAppliedAmountVar="ngModel"
+                            [ngClass]="{'is-invalid': (loanAppliedAmountVar.touched || loanAppliedAmountVar.dirty) && !loanAppliedAmountVar.valid }" />
+                        <span class="invalid-feedback">
+                            <span *ngIf="loanAppliedAmountVar.errors?.required">
+                                Please enter Loan Amount.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="loanTenureYearsId">Tenure Years:</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="userNameId" type="text" placeholder="Years" required
+                        [(ngModel)]=loanApplication.loanTenureYears name="loanTenureYears" #loanTenureYearsVar="ngModel"
+                        [ngClass]="{'is-invalid': (loanTenureYearsVar.touched || loanTenureYearsVar.dirty) && !loanTenureYearsVar.valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="loanTenureYearsVar.errors?.required">
+                            Please enter Loan Tenure Years.
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3" type="submit" style="width:80px"
+                        [title]="loanApplicationForm.valid ? 'Submit Loan Application' : 'Disabled until all required fields fill'"
+                        [disabled]="!loanApplicationForm.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

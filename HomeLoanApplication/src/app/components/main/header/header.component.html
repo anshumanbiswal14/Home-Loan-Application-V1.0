@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a [routerLink]="['/']" class="navbar-brand"><em class="fas fa-home"></em> HomeLoan</a>
+    <button class="navbar-toggler border-color bg-secondary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <em class="navbar-toggler-icon bg-secondary"></em>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ">
+
+            <li class="nav-item active">
+                <div class="dropdown mt-1">
+                    <a *ngIf="!isLoggedIn" class="nav-link dropdown-toggle fas fa-sign-in-alt" id="dropdownMenuLink"
+                        data-toggle="dropdown">
+                        Login
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" [routerLink]="['/adminLogin']">Admin Login</a>
+                        <a class="dropdown-item" [routerLink]="['/customerLogin']">Customer Login</a>
+                        <a class="dropdown-item" [routerLink]="['/financeOfficerLogin']">FinanceOfficer Login</a>
+                        <a class="dropdown-item" [routerLink]="['/landOfficerLogin']">LandOfficer Login</a>
+                    </div>
+                </div>
+            </li>
+
+            <li *ngIf="!isLoggedIn" class="nav-item active">
+                <a [routerLink]="['/register']" class="nav-link"><em class="fas fa-warehouse"></em> Register</a>
+            </li>
+
+            <li class="nav-item active">
+                <a *ngIf="isCustomerLoggedIn" [routerLink]="['/customer/home']" class="nav-link"><em
+                        class="fas fa-home"></em>
+                    Home</a>
+            </li>
+
+            <li class="nav-item active">
+                <a *ngIf="isAdminLoggedIn" [routerLink]="['/admin']" class="nav-link"><em class="fas fa-home"></em>
+                    Home</a>
+            </li>
+
+            <li class="nav-item active">
+                <a *ngIf="isLandOfficerLoggedIn" [routerLink]="['/landOfficer']" class="nav-link"><em
+                        class="fas fa-home"></em>
+                    Home</a>
+            </li>
+
+            <li class="nav-item active">
+                <a *ngIf="isFinanceOfficerLoggedIn" [routerLink]="['/financeOfficer']" class="nav-link"><em
+                        class="fas fa-home"></em>
+                    Home</a>
+            </li>
+
+            <li class="nav-item active">
+                <a [routerLink]="['/emiCalculator']" class="nav-link"><em class="fa fa-calculator"></em> EMI
+                    Calculator</a>
+            </li>
+
+            <li class="nav-item active">
+                <a [routerLink]="['/aboutUs']" class="nav-link"><em class="fas fa-info"></em> About Us</a>
+            </li>
+
+            <li class="nav-item active">
+                <a [routerLink]="['/contactUs']" class="nav-link"><em class="far fa-id-badge"></em> Contact Us</a>
+            </li>
+
+            <li class="nav-item">
+                <a *ngIf="isLoggedIn" type="button" (click)="logout()" class="nav-link"><em
+                        class="fas fa-sign-out-alt"></em> Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

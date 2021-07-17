@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-header"><h5><b>FINANCE OFFICER</b></h5></div>
+    <div class="card-body">
+        <div class="container-fluid" style="background-color: antiquewhite;">
+
+            <br>
+            <div class="container-fluid " style="padding-bottom: 1rem;">
+                <h4 class="text-center mb-4"><b>LIST OF LOAN APPLICATION</b></h4>
+                <table class="table bg-light" style="border: 2ex;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ApplicationId</th>
+                            <th>ApplicationDate</th>
+                            <th>LoanAppliedAmount</th>
+                            <th>LoanTenureYears</th>
+                            <th>LandOfficer Status</th>
+                            <th>FinanceOfficer Status</th>
+                            <th>UpdateStatus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let list of loanApplicationList'>
+                            <td scope="row">
+                                {{list.applicationId}}
+                            </td>
+                            <td scope="row">
+                                {{list.applicationDate}}
+                            </td>
+                            <td scope="row">
+                                {{list.loanAppliedAmount}}
+                            </td>
+                            <td scope="row">
+                                {{list.loanTenureYears}}
+                            </td>
+                            <td scope="row">
+                                {{list.landVerificationApproval ? 'Approved':'Waiting for LandOfficer Approval'}}
+                            </td>
+                            <td scope="row">
+                                {{list.financeVerificationApproval?'Approved':'Pending'}}
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-primary"
+                                  (click)="updateList(list.applicationId)" >{{list.financeVerificationApproval?'Updated':'Update Status'}}</button>
+                                  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
