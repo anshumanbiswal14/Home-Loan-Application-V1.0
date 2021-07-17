@@ -23,13 +23,6 @@ import com.cg.homeloan.repositories.ICustomerRepository;
 import com.cg.homeloan.repositories.ILoanApplicationRepository;
 import com.cg.homeloan.services.ILoanApplicationService;
 
-/**
- * 
- * @author Aaradhya_Jain
- * Test cases for Loan Application Service methods
- *
- */
-
 @SpringBootTest
 class LoanApplicationServiceTest {
 	
