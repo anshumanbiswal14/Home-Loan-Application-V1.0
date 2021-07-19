@@ -1,6 +1,8 @@
 package com.cg.homeloan.controllers;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +35,8 @@ import com.cg.homeloan.services.LandVerificationService;
 @RequestMapping("/homeloan/landOfficer")
 @CrossOrigin(origins = "*")
 public class LandVerificationOfficerController {
+	
+	Logger logger = Logger.getLogger(AdminController.class.getName());
 
 	@Autowired
 	LandVerificationService landVerificationService;
@@ -49,6 +53,11 @@ public class LandVerificationOfficerController {
 				
 	@Autowired
 	private JwtUtils jwtutil;
+	
+	public LandVerificationOfficerController() {
+		logger.log(Level.INFO,"-----> Inside Land Service Controller Working!");
+	}
+
 
 	@GetMapping("/LoanApplications")
 	public ResponseEntity<List<LoanApplication>> getAllLoanApplications() {

@@ -1,5 +1,8 @@
 package com.cg.homeloan.controllers;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +39,8 @@ import com.cg.homeloan.services.ILoanApplicationService;
 @RequestMapping("/homeloan/customer")
 @CrossOrigin(origins = "*")
 public class CustomerController {
+	Logger logger = Logger.getLogger(AdminController.class.getName());
+	
 	@Autowired
 	CustomerService customerService;
 	
@@ -58,6 +63,10 @@ public class CustomerController {
 		
 	@Autowired
 	private JwtUtils jwtutil;
+	
+	public CustomerController() {
+		logger.log(Level.INFO,"-----> Inside Customer Service Controller Working!");
+	}
 		
 	@PostMapping("/addCustomer")
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
