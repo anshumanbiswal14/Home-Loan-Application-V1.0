@@ -71,13 +71,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 			httpSecurity.cors();
 			log.info("configure");
 			httpSecurity.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//		        .antMatchers("/").permitAll()
+
 					.antMatchers("/homeloan/customer/login").permitAll().antMatchers("/homeloan/admin/login").permitAll()
 					.antMatchers("/homeloan/financeOfficer/login").permitAll().antMatchers("/homeloan/landOfficer/login")
 					.permitAll().antMatchers("/homeloan/customer/addCustomer").permitAll().antMatchers("/homeloan/customer/EMICalculator/**").permitAll().anyRequest().authenticated()
 					.and().exceptionHandling().and().sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-			// .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 			httpSecurity.addFilterBefore(userRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		}
 }

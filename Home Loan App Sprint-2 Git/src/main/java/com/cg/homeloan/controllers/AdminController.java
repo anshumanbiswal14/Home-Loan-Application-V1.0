@@ -1,6 +1,8 @@
 package com.cg.homeloan.controllers;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +47,8 @@ import com.cg.homeloan.services.LoanAgreementService;
 @RequestMapping("/homeloan/admin")
 @CrossOrigin(origins = "*")
 public class AdminController {
+	
+	Logger logger = Logger.getLogger(AdminController.class.getName());	
 
 	@Autowired
 	IAdminService adminService;
@@ -75,11 +79,18 @@ public class AdminController {
 	@Autowired
 	private JwtUtils jwtutil;
 	
+	
+	
+	public AdminController() {
+		logger.log(Level.INFO,"-----> Inside Admin Service Controller Working!");
+	}
+	
 	@PostMapping("/addAdmin")
 	public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
 		return new ResponseEntity<>(adminService.addAdmin(admin), HttpStatus.OK);
 	}
 	
+
 	@PostMapping("/addFinanceOfficer")
 	public ResponseEntity<FinanceVerificationOfficer> addFinanceOfficer(@RequestBody FinanceVerificationOfficer officer) {
 		return new ResponseEntity<>(financeVerificationService.addFinanceOfficer(officer), HttpStatus.OK);
