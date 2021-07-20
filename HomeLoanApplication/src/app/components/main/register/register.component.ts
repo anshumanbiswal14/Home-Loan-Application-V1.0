@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.customerService.addCustomer(this.customer).subscribe(
       result => {
         console.log('Success: ',result)
-        alert("Register Succefully !!! ")
+        alert("Register Successfully !!! ")
         window.location.href="/login"
       },
       error => {
