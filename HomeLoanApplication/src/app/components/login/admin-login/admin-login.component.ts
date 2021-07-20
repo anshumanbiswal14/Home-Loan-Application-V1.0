@@ -27,7 +27,7 @@ export class AdminLoginComponent implements OnInit {
           window.location.href="/admin";
       },
       error=>{
-        alert("Invalid Credintails !!!! \nPlease Enter correct UserName and Password");
+        alert("Invalid Credentials !!!! \nPlease Enter correct UserName and Password");
         console.log('error: ',error);
         window.location.href="/adminLogin";
       }
